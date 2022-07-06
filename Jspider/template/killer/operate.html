@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<h1 align="center">操作页面</h1>
+<div style="width:200px;float:left;height:200px;">
+<input type="text" name="url" placeholder="输入要处理的url地址" id="urlToOperate"></input>
+<button type="button" id="btn">提交</button>
+    <hr></hr>
+    <form action="./loadlabeldata" method="post">
+    <p>内容：<textarea type="text" name="content" placeholder="内容" id="contentId" style="margin: 0px; width: 191px; height: 114px;"></textarea></p>
+    <p>属性：<input type="text" name="attribute" placeholder="属性"></p>
+    <input type="submit" value="录入">
+</form>
+    <hr></hr>
+    <button type="button" id="outBtn">退出</button>
+</div>
+<div id="selectDemo" style="width: 1031px;float:left;height:auto;">
+    <IFRAME src="./welcome.html" id="operate_iframe" name="operatehtml" style="width: 1020px;height: 1000px;"></IFRAME>
+</div>
+	<script type="text/javascript">
+	  <!--$('#selectDemo').on('click','iframe',function (e){-->
+        <!--alert("yes!!!!!");-->
+    <!--});-->
+	<!--$("#operate_iframe").ready(function(){-->
+		<!--$("#operate_iframe").mouseup(function(){-->
+			<!--var txt=window.getSelection?window.getSelection():window.getSelection().toString();-->
+			<!--console.log(txt);-->
+            <!--&lt;!&ndash;alert(txt)&ndash;&gt;-->
+            <!--$("#contentId").val(txt)-->
+		<!--});-->
+	<!--});-->
+	</script>
+    <script type="text/javascript">
+        $("#btn").click(function(){
+               $.ajax({
+                    url:"test",
+                    type:"post",
+                    data:{
+                    "urlToOperate":$("#urlToOperate").val()
+                    },
+                     success:function (data) {
+                        <!--$("#welcome_iframe").remove();-->
+                        $("#operate_iframe").attr("src",data);
+                        $("#urlToOperate").val("");
+                        }
+                     })
+        });
+    </script>
+</body>
+</html>
